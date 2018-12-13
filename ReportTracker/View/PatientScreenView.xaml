@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="ReportTracker.View.PatientScreenView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReportTracker.View"
+             mc:Ignorable="d" 
+                          xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width ="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox
+            Header="Patient Information"
+            Margin="10"
+            HorizontalAlignment="Stretch"
+            Style="{DynamicResource MaterialDesignCardGroupBox}">
+
+            <GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="32"
+                            Height="32"
+                            VerticalAlignment="Center"
+                            Kind="Account"/>
+                        <TextBlock
+                            Margin="8 0 0 0"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource MaterialDesignSubheadingTextBlock}"
+                            Text="{Binding}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </GroupBox.HeaderTemplate>
+            <StackPanel>
+                <TextBlock Text="Name" FontWeight="Bold"/>
+                <TextBlock Text="{Binding Patient.PatientName}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <DataGrid
+            ItemsSource="{Binding Patient.Requests}"
+            Grid.Column="1"
+            AutoGenerateColumns="False"
+            >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Completed">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox HorizontalAlignment="Center" IsChecked="{Binding Completed, Mode=TwoWay}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Time Requested" Binding="{Binding TimeRequested}"/>
+                <DataGridTextColumn Header="Request" Binding="{Binding Request}"/>
+                <DataGridTextColumn Header="Details" Binding="{Binding Details}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</UserControl>

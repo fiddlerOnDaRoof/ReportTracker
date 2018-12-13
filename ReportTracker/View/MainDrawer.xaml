@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ReportTracker.View.MainDrawer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ReportTracker.View"
+             xmlns:viewModel="clr-namespace:ReportTracker.ViewModel"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance viewModel:MainDrawerViewModel}"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <TreeView SelectedItemChanged="TreeView_SelectedItemChanged">
+        <TreeViewItem Header="DashBoard" Name="DashboardItem"/>
+        <TreeViewItem Header="Patients" ItemsSource="{Binding Patients}" DisplayMemberPath="PatientName"/>
+
+    </TreeView>
+
+</UserControl>
